@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 420" width="1170" height="420">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#12994A"/><stop offset=".55" stop-color="#22C55E"/><stop offset="1" stop-color="#4ADE80"/></linearGradient>
+<radialGradient id="glow" cx=".82" cy=".46" r=".5"><stop offset="0" stop-color="#E7FFF0" stop-opacity=".75"/><stop offset="1" stop-color="#E7FFF0" stop-opacity="0"/></radialGradient>
+<linearGradient id="pill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE06B"/><stop offset="1" stop-color="#F5A623"/></linearGradient>
+<linearGradient id="sh1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#BFF4D3"/></linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#064524" flood-opacity=".4"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
+<path id="s5" d="M0,-1 L.2245,-.309 L.9511,-.309 L.3633,.118 L.5878,.809 L0,.382 L-.5878,.809 L-.3633,.118 L-.9511,-.309 L-.2245,-.309Z"/>
+<path id="s4" d="M0,-1 Q.12,-.12 1,0 Q.12,.12 0,1 Q-.12,.12 -1,0 Q-.12,-.12 0,-1Z"/>
+<style>
+.tw{animation:tw 2.4s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+.tw2{animation-delay:.8s}.tw3{animation-delay:1.6s}.tw4{animation-delay:.4s}
+@keyframes tw{0%,100%{opacity:.35; transform:scale(.6) rotate(0)}50%{opacity:1; transform:scale(1.15) rotate(45deg)}}
+.flare{animation:flare 2.8s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes flare{0%,100%{opacity:.6; transform:scale(.8) rotate(0)}50%{opacity:1; transform:scale(1.25) rotate(90deg)}}
+.pill{animation:pill 2.6s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes pill{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.big{animation:big 6s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes big{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(6deg) scale(1.04)}}
+.pct{animation:pct 3s ease-in-out infinite; transform-box:fill-box; transform-origin:left center;}
+@keyframes pct{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.fl{animation:fl 5s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+.fl2{animation-delay:1.2s}.fl3{animation-delay:2.4s}.fl4{animation-delay:3.1s}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(12deg)}}
+</style>
+</defs>
+<rect width="1170" height="420" fill="url(#bg)"/>
+<rect width="1170" height="420" fill="url(#glow)"/>
+<path d="M-50 330 Q 400 180 1220 300" stroke="#fff" stroke-opacity=".12" stroke-width="3" fill="none"/>
+<path d="M300 -20 Q 700 160 1200 60" stroke="#fff" stroke-opacity=".10" stroke-width="2" fill="none"/>
+<g fill="#A7EFC4" fill-opacity=".55">
+<g class="fl"><use href="#s5" transform="translate(520 80) scale(42) rotate(-12)"/></g>
+<g class="fl fl2"><use href="#s5" transform="translate(860 360) scale(36) rotate(10)"/></g>
+<g class="fl fl3"><use href="#s5" transform="translate(150 380) scale(32) rotate(-20)"/></g>
+<g class="fl fl4"><use href="#s5" transform="translate(1120 36) scale(28) rotate(18)"/></g>
+</g>
+<g fill="#DFFBE9" fill-opacity=".9">
+<g class="tw"><use href="#s4" transform="translate(632 206) scale(15)"/></g>
+<g class="tw tw2"><use href="#s4" transform="translate(760 80) scale(10)"/></g>
+<g class="tw tw3"><use href="#s4" transform="translate(470 330) scale(9)"/></g>
+<g class="tw tw4"><use href="#s4" transform="translate(600 384) scale(7)"/></g>
+</g>
+<text x="58" y="78" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="42" fill="#fff" letter-spacing="1">LolzMarket</text>
+<text class="pct" x="52" y="238" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="150" fill="#fff" letter-spacing="-4">1%</text>
+<text x="58" y="304" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="52" fill="#fff">Комиссия</text>
+<text x="58" y="364" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="52" fill="#fff">сервиса</text>
+<g class="pill"><g filter="url(#sh)">
+<rect x="600" y="112" width="392" height="70" rx="35" fill="url(#pill)"/>
+</g>
+<path d="M645 147 l-10 -16 h20 Z M635 131 h20 v-10 a10 10 0 0 0 -20 0 Z" fill="#8a5a00" transform="translate(0 -2)"/>
+<text x="678" y="157" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="27" fill="#5c3b00">Деньги держит гарант</text></g>
+<g transform="translate(1030 268) rotate(-8)"><g class="big" filter="url(#sh)">
+<path d="M0 -150 L128 -102 V18 C128 112 74 174 0 206 C-74 174 -128 112 -128 18 V-102 Z" fill="url(#sh1)"/>
+<path d="M0 -150 L128 -102 V18 C128 112 74 174 0 206 C-74 174 -128 112 -128 18 V-102 Z" fill="none" stroke="#16A34A" stroke-width="6" stroke-opacity=".25"/>
+<path d="M-54 6 L-14 50 L62 -44" fill="none" stroke="#16A34A" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+</g></g>
+<g class="flare"><g fill="#fff" filter="url(#soft)" opacity=".9"><use href="#s4" transform="translate(980 150) scale(40)"/></g>
+<use href="#s4" transform="translate(980 150) scale(32)" fill="#fff"/>
+<circle cx="980" cy="150" r="14" fill="#fff"/></g>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 420" width="1170" height="420">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3FBF6"/><stop offset="1" stop-color="#DCF3E6"/></linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0E5A32" flood-opacity=".22"/></filter>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34D36B"/><stop offset="1" stop-color="#15A34A"/></linearGradient>
+<linearGradient id="y" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE36B"/><stop offset="1" stop-color="#FFAA00"/></linearGradient>
+<linearGradient id="v" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A8BFF"/><stop offset="1" stop-color="#6C56E8"/></linearGradient>
+<linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5DE0FF"/><stop offset="1" stop-color="#0098EA"/></linearGradient>
+<style>
+.ic{animation:bob 4s ease-in-out infinite;}
+.ic:nth-child(2){animation-delay:.6s}.ic:nth-child(3){animation-delay:1.2s}.ic:nth-child(4){animation-delay:1.8s}.ic:nth-child(5){animation-delay:2.4s}.ic:nth-child(6){animation-delay:3s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.ttl{animation:ttl 4s ease-in-out infinite; transform-box:fill-box; transform-origin:center;}
+@keyframes ttl{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+</style>
+</defs>
+<rect width="1170" height="420" fill="url(#bg)"/>
+<g filter="url(#sh)">
+<g class="ic"><g transform="translate(150 100) rotate(-12)">
+  <rect x="-70" y="-70" width="140" height="140" rx="36" fill="url(#g)"/>
+  <rect x="-40" y="-6" width="80" height="52" rx="8" fill="#fff"/>
+  <rect x="-46" y="-26" width="92" height="22" rx="7" fill="#fff"/>
+  <rect x="-7" y="-26" width="14" height="72" fill="#15A34A"/>
+  <path d="M0 -26 C -24 -52 -46 -30 -5 -26 M0 -26 C 24 -52 46 -30 5 -26" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+</g></g>
+<g class="ic"><g transform="translate(74 274) rotate(-14)">
+  <rect x="-46" y="-46" width="92" height="92" rx="26" fill="url(#g)"/>
+  <text x="0" y="22" text-anchor="middle" font-family="Arial Black, Arial" font-weight="900" font-size="60" fill="#fff">g</text>
+</g></g>
+<g class="ic"><g transform="translate(270 314) rotate(8)">
+  <rect x="-78" y="-78" width="156" height="156" rx="40" fill="url(#v)"/>
+  <path d="M0 -44 L46 -28 V8 C46 42 26 62 0 72 C-26 62 -46 42 -46 8 V-28 Z" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M-19 4 L-5 18 L22 -14" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</g></g>
+<g class="ic"><g transform="translate(930 112) rotate(10)">
+  <rect x="-78" y="-78" width="156" height="156" rx="40" fill="url(#t)"/>
+  <path d="M-40 -30 L40 -30 L0 44Z M-40 -30 L0 -30 L0 44Z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+</g></g>
+<g class="ic"><g transform="translate(1100 232) rotate(12)">
+  <circle r="58" fill="#26A17B"/>
+  <text x="0" y="24" text-anchor="middle" font-family="Arial Black, Arial" font-weight="900" font-size="70" fill="#fff">&#8366;</text>
+</g></g>
+<g class="ic"><g transform="translate(962 322) rotate(-6)">
+  <circle r="70" fill="url(#y)"/>
+  <path d="M0,-40 L11.8,-16.2 L38,-12.4 L19,6.2 L23.5,32.4 L0,20 L-23.5,32.4 L-19,6.2 L-38,-12.4 L-11.8,-16.2Z" fill="#fff"/>
+</g></g>
+</g>
+<text x="585" y="205" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="92" fill="#15A34A" class="ttl">LolzMarket</text>
+<text x="585" y="262" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="29" fill="#4B6358">Безопасные сделки</text>
+<text x="585" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="29" fill="#4B6358">с подарками Telegram</text>
+</svg>
