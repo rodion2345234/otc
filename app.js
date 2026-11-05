@@ -48,7 +48,9 @@ function renderTopbar() {
 
   var brand = el("a", "brand"); brand.href = "index.html";
   var mark = el("span", "brand__mark");
-  mark.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9.5-8 11-4.5-1.5-8-6-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5L16 9.5"/></svg>';
+  var logo = document.createElement("img");
+  logo.src = "../logo.webp"; logo.alt = ""; logo.setAttribute("aria-hidden", "true");
+  mark.appendChild(logo);
   brand.appendChild(mark); brand.appendChild(document.createTextNode("LolzMarket"));
 
   var box = el("div", "profile-box");
