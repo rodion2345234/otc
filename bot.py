@@ -193,7 +193,6 @@ def send_deal(chat_id, deal):
             "reply_markup": {
                 "inline_keyboard": [
                     [{"text": "📱 Открыть сделку в мини-приложении", "web_app": {"url": app_url}}],
-                    [{"text": "Открыть карточку в браузере", "url": app_url}],
                     [{"text": "Связаться с администратором", "url": ADMIN_URL}],
                 ]
             },
