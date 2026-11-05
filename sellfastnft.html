@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Быстро продать NFT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" style="max-width:560px">
+
+  <div class="page-top"><a class="btn-create btn-ghost" href="index.html">← Назад</a></div>
+
+  <div class="panel">
+    <h2>Быстро продать NFT</h2>
+    <p class="text">
+      Чтобы быстро продать NFT, напишите нашему администратору
+      <a href="https://t.me/NFT_Exchanger1" id="admin-link">@NFT_Exchanger1</a>.
+      Укажите, какой именно NFT вы хотите продать, и назовите цену.
+      Если администратор согласится, вы передадите ему NFT, а он произведет оплату.
+    </p>
+    <button class="btn-create wide" id="btn-admin">Написать администратору</button>
+  </div>
+
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if (tg) { tg.ready(); tg.expand(); }
+  var ADMIN = "https://t.me/NFT_Exchanger1";
+  function openAdmin() { if (tg) { tg.openTelegramLink(ADMIN); } else { window.open(ADMIN, "_blank"); } }
+  document.getElementById("btn-admin").onclick = openAdmin;
+  document.getElementById("admin-link").onclick = function (e) { e.preventDefault(); openAdmin(); };
+</script>
+</body>
+</html>

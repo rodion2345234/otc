@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Создать сделку</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap" style="max-width:560px">
+
+  <header class="topbar" id="topbar"></header>
+
+  <div class="page-top"><a class="btn-create btn-ghost" href="index.html">← Назад</a></div>
+
+  <div class="panel">
+    <h2>Создать сделку</h2>
+    <p class="sub">Заполни данные NFT. Заявка уйдёт боту, дальше сделка проходит только внутри бота.</p>
+
+    <div class="field">
+      <span class="flabel">Что хочешь сделать</span>
+      <div class="seg">
+        <input type="radio" name="role" id="r-sell" value="sell" checked><label for="r-sell">Продаю</label>
+        <input type="radio" name="role" id="r-buy" value="buy"><label for="r-buy">Покупаю</label>
+      </div>
+    </div>
+
+    <div class="field"><label for="f-name">Название NFT *</label><input id="f-name" maxlength="60" placeholder="Например: Cyber Eye #214"></div>
+    <div class="field"><label for="f-link">Ссылка на NFT *</label><input id="f-link" type="url" placeholder="https://..."></div>
+    <div class="row">
+      <div class="field"><label for="f-price">Цена *</label><input id="f-price" type="number" min="0" step="any" placeholder="120"></div>
+      <div class="field"><label for="f-cur">Валюта</label><select id="f-cur"><option>USDT</option><option>TON</option><option>ETH</option><option>RUB</option></select></div>
+    </div>
+    <div class="field"><label for="f-chain">Сеть</label><select id="f-chain"><option>TON</option><option>Ethereum</option><option>Solana</option><option>Polygon</option></select></div>
+    <div class="field"><label for="f-contact">Твой Telegram *</label><input id="f-contact" maxlength="40" placeholder="@username"></div>
+    <div class="field"><label for="f-note">Комментарий</label><textarea id="f-note" maxlength="300" placeholder="Редкость, коллекция, особые условия"></textarea></div>
+
+    <p class="error" id="f-error"></p>
+    <button class="btn-create wide" id="f-submit" type="button">Отправить заявку</button>
+  </div>
+
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
+<script>
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  document.getElementById("f-submit").onclick = function () {
+    var err = document.getElementById("f-error");
+    var name = val("f-name"), link = val("f-link"), price = val("f-price"), contact = val("f-contact");
+
+    if (!name) { err.textContent = "Введи название NFT."; return; }
+    if (!/^https?:\/\/[^\s]+$/i.test(link)) { err.textContent = "Ссылка на NFT должна начинаться с https://"; return; }
+    if (!(parseFloat(price) > 0)) { err.textContent = "Укажи цену больше нуля."; return; }
+    if (!/^@?[A-Za-z0-9_]{4,32}$/.test(contact)) { err.textContent = "Укажи Telegram в формате @username."; return; }
+    if (contact.charAt(0) !== "@") contact = "@" + contact;
+    err.textContent = "";
+
+    var data = {
+      action: "create_offer",
+      role: document.querySelector('input[name="role"]:checked').value,
+      name: name, link: link, price: price,
+      currency: val("f-cur"), chain: val("f-chain"),
+      contact: contact, note: val("f-note")
+    };
+
+    countOffer();
+    if (tg) { tg.sendData(JSON.stringify(data)); }
+    else { toast("Заявка готова. В Telegram она уйдёт боту"); renderTopbarRefresh(); }
+  };
+
+  function renderTopbarRefresh() {
+    var bar = document.getElementById("topbar");
+    bar.textContent = "";
+    renderTopbar();
+  }
+</script>
+</body>
+</html>
