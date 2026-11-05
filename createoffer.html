@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Создать сделку</title>
   <link rel="stylesheet" href="style.css">
+    <html lang="ru">
+    
 </head>
 <body>
 <div class="wrap" style="max-width:560px">
@@ -14,8 +14,20 @@
   <div class="page-top"><a class="btn-create btn-ghost" href="index.html">← Назад</a></div>
 
   <div class="panel">
-    <h2>Создать сделку</h2>
-    <p class="sub">Заполни данные NFT. Заявка уйдёт боту, дальше сделка проходит только внутри бота.</p>
+    <h2>Давайте оформим сделку</h2>
+    <p class="sub">Добавьте детали предложения и заранее согласуйте порядок с администратором.</p>
+
+    <section class="deal-steps" aria-labelledby="deal-steps-title">
+     
+        <h3 id="deal-steps-title">Как проходит сделка</h3>
+      <ol>
+        <li>Продавец отправляет подарок администратору после согласования деталей.</li>
+        <li>Покупатель переводит согласованную сумму администратору, только когда тот подтвердит условия и способ оплаты.</li>
+        <li>После проверки подарка и оплаты администратор отправляет подарок покупателю, а деньги продавцу.</li>
+        <li>Если кто-то передумал или возникла проблема, остановитесь и согласуйте с администратором отмену сделки.</li>
+      </ol>
+      <p>Сайт не принимает и не хранит подарки или деньги, а также не подтверждает переводы. Не отправляйте средства или подарок, пока администратор не подтвердит условия.</p>
+    </section>
 
     <div class="field">
       <span class="flabel">Что хочешь сделать</span>
@@ -35,8 +47,17 @@
     <div class="field"><label for="f-contact">Твой Telegram *</label><input id="f-contact" maxlength="40" placeholder="@username"></div>
     <div class="field"><label for="f-note">Комментарий</label><textarea id="f-note" maxlength="300" placeholder="Редкость, коллекция, особые условия"></textarea></div>
 
-    <p class="error" id="f-error"></p>
-    <button class="btn-create wide" id="f-submit" type="button">Отправить заявку</button>
+    <p class="error" id="f-error" role="alert"></p>
+    <button class="btn-create wide" id="f-submit" type="button">Продолжить в Telegram</button>
+    <section class="share-result" id="share-result" hidden aria-live="polite">
+      <h3>Ссылка на сделку</h3>
+      <p>Перед отправкой покупателю убедитесь, что бот подтвердил создание сделки.</p>
+      <div class="share-link">
+        <a id="deal-link" href="#" target="_blank" rel="noopener"></a>
+        <button class="btn-create btn-ghost" id="copy-link" type="button">Скопировать</button>
+      </div>
+      <p class="share-hint" id="share-hint"></p>
+    </section>
   </div>
 
 </div>
@@ -44,37 +65,76 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="app.js"></script>
 <script>
+  var pendingOffer = null;
   function val(id) { return document.getElementById(id).value.trim(); }
 
   document.getElementById("f-submit").onclick = function () {
+    if (pendingOffer) {
+      if (tg) tg.sendData(JSON.stringify(pendingOffer));
+      return;
+    }
+
     var err = document.getElementById("f-error");
     var name = val("f-name"), link = val("f-link"), price = val("f-price"), contact = val("f-contact");
 
     if (!name) { err.textContent = "Введи название NFT."; return; }
     if (!/^https?:\/\/[^\s]+$/i.test(link)) { err.textContent = "Ссылка на NFT должна начинаться с https://"; return; }
-    if (!(parseFloat(price) > 0)) { err.textContent = "Укажи цену больше нуля."; return; }
+    var amount = Number(price);
+    if (!Number.isFinite(amount) || amount <= 0) { err.textContent = "Укажи цену больше нуля."; return; }
     if (!/^@?[A-Za-z0-9_]{4,32}$/.test(contact)) { err.textContent = "Укажи Telegram в формате @username."; return; }
     if (contact.charAt(0) !== "@") contact = "@" + contact;
     err.textContent = "";
 
+    var botUsername = "LolzMrktXBot";
+    var dealId = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    var joinUrl = "https://t.me/" + botUsername + "?start=join_" + dealId;
     var data = {
       action: "create_offer",
+      deal_id: dealId,
+      join_url: joinUrl,
       role: document.querySelector('input[name="role"]:checked').value,
       name: name, link: link, price: price,
       currency: val("f-cur"), chain: val("f-chain"),
       contact: contact, note: val("f-note")
     };
 
+    pendingOffer = data;
     countOffer();
-    if (tg) { tg.sendData(JSON.stringify(data)); }
-    else { toast("Заявка готова. В Telegram она уйдёт боту"); renderTopbarRefresh(); }
+    showInviteLink(joinUrl);
+    if (tg) {
+      document.getElementById("share-hint").textContent =
+        "Отправьте заявку боту кнопкой ниже. Ссылка заработает после того, как бот сохранит сделку и начнёт обрабатывать start=join_...";
+      document.getElementById("f-submit").textContent = "Отправить заявку боту";
+    } else {
+      document.getElementById("share-hint").textContent =
+        "Откройте приложение внутри Telegram, чтобы отправить заявку боту @" + botUsername + ". Ссылка заработает только после того, как бот сохранит сделку и обработает start=join_...";
+      document.getElementById("f-submit").textContent = "Заявка отправляется только в Telegram";
+      document.getElementById("f-submit").disabled = true;
+    }
   };
 
-  function renderTopbarRefresh() {
-    var bar = document.getElementById("topbar");
-    bar.textContent = "";
-    renderTopbar();
+  function showInviteLink(url) {
+    var result = document.getElementById("share-result");
+    var link = document.getElementById("deal-link");
+    link.href = url;
+    link.textContent = url;
+    result.hidden = false;
+    result.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
+
+  document.getElementById("copy-link").onclick = function () {
+    var url = document.getElementById("deal-link").href;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function () {
+        toast("Ссылка скопирована.");
+      }).catch(function () {
+        toast("Не удалось скопировать ссылку. Выделите её и скопируйте вручную.");
+      });
+    } else {
+      toast("Откройте страницу по HTTPS, чтобы скопировать ссылку.");
+    }
+  };
+
 </script>
 </body>
 </html>
