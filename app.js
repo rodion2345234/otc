@@ -49,7 +49,11 @@ function renderTopbar() {
   var brand = el("a", "brand"); brand.href = "index.html";
   var mark = el("span", "brand__mark");
   var logo = document.createElement("img");
-  logo.src = "../logo.webp"; logo.alt = ""; logo.setAttribute("aria-hidden", "true");
+  logo.src = "logo.webp"; logo.alt = ""; logo.setAttribute("aria-hidden", "true");
+  logo.onerror = function () {
+    logo.onerror = null;
+    logo.src = "../logo.webp";
+  };
   mark.appendChild(logo);
   brand.appendChild(mark); brand.appendChild(document.createTextNode("LolzMarket"));
 
@@ -83,4 +87,10 @@ function renderTopbar() {
   box.appendChild(btn); box.appendChild(pop);
   bar.appendChild(brand); bar.appendChild(box);
 }
+document.querySelectorAll("img[data-fallback]").forEach(function (image) {
+  image.onerror = function () {
+    image.onerror = null;
+    image.src = image.getAttribute("data-fallback");
+  };
+});
 renderTopbar();
