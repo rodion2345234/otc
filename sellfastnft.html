@@ -12,14 +12,33 @@
   <div class="page-top"><a class="btn-create btn-ghost" href="index.html">← Назад</a></div>
 
   <div class="panel">
-    <h2>Быстро продать NFT</h2>
-    <p class="text">
-      Чтобы быстро продать NFT, напишите нашему администратору
-      <a href="https://t.me/NFT_Exchanger1" id="admin-link">@NFT_Exchanger1</a>.
-      Укажите, какой именно NFT вы хотите продать, и назовите цену.
-      Если администратор согласится, вы передадите ему NFT, а он произведет оплату.
-    </p>
-    <button class="btn-create wide" id="btn-admin">Написать администратору</button>
+    <span class="eyebrow">Понятный порядок, шаг за шагом</span>
+    <h2>Продажа через администратора</h2>
+    <p class="sub">Сначала обсудите условия. Не отправляйте подарок и деньги, пока обе стороны не подтвердят детали.</p>
+
+    <section class="deal-flow" aria-label="Этапы сделки">
+      <article class="deal-flow__step">
+        <span class="deal-flow__number">01</span>
+        <div><h3>Согласуйте условия</h3><p>Напишите администратору и зафиксируйте NFT, цену, валюту и порядок действий.</p></div>
+      </article>
+      <article class="deal-flow__step">
+        <span class="deal-flow__number">02</span>
+        <div><h3>Дождитесь подтверждения</h3><p>Продавец отправляет подарок администратору, а покупатель переводит оплату только после подтверждения согласованных условий.</p></div>
+      </article>
+      <article class="deal-flow__step">
+        <span class="deal-flow__number">03</span>
+        <div><h3>Завершите сделку</h3><p>После подтверждения получения подарка и оплаты администратор передает подарок покупателю, а оплату продавцу.</p></div>
+      </article>
+    </section>
+
+    <div class="deal-warning">
+      <b>Важно перед отправкой</b>
+      <p>Проверьте получателя, сумму и условия в переписке. Сайт не принимает, не хранит и не проверяет переводы или подарки. При сомнениях остановитесь и свяжитесь с администратором.</p>
+    </div>
+
+    <a class="btn-create wide admin-cta" href="https://t.me/NFT_Exchanger1" id="admin-link" target="_blank" rel="noopener">
+      <span>Обсудить сделку</span><small>@NFT_Exchanger1</small>
+    </a>
   </div>
 
 </div>
@@ -30,7 +49,6 @@
   if (tg) { tg.ready(); tg.expand(); }
   var ADMIN = "https://t.me/NFT_Exchanger1";
   function openAdmin() { if (tg) { tg.openTelegramLink(ADMIN); } else { window.open(ADMIN, "_blank"); } }
-  document.getElementById("btn-admin").onclick = openAdmin;
   document.getElementById("admin-link").onclick = function (e) { e.preventDefault(); openAdmin(); };
 </script>
 </body>
